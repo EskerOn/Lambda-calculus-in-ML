@@ -111,34 +111,34 @@ fun betaster(any)=if redex(any)=true then
 val TrueT = l(x 1,l(x 2, v(x 1)));
 val FalseT = l(x 1,l(x 2, v(x 2)));
 
-val zeroT = l(x 1, l(x 2, v(x 2)));
+val zeroT = l(x 9, l(x 10, v(x 10)));
 
-fun ite(b,x1,x2) = a(a(b, x1), x2);
+val ite = l(x 3, l(x 1, l(x 2, a(a(v(x 3), v(x 1)),v(x 2)))));
 
-fun notT(b) = a(a(b, FalseT), TrueT);
+val notT = l(x 3,a(a(v(x 3),FalseT), TrueT));
 
-fun andT(x1, x2) = a(a(x1,x2), FalseT);
+val andT= l(x 3, l(x 4, a(a(v(x 3),v(x 4)),FalseT)))
 
-fun orT(x1, x2) = a(a(x1,TrueT), x2);
+val orT = l(x 3, l(x 4, a(a(v(x 3), TrueT), v(x 4))))
 
-fun pi(le,r, z) = l(z ,a(a(v(z),le),r));
+val pi = l(x 5, l(x 6, l(x 7, a(a(v(x 7),v(x 5)),v(x 6)))));
 
-fun pi1(u)= a(u, TrueT);
+val pi1= l(x 8, a(v(x 8), l(x 5, l(x 6, v(x 5)))));
 
-fun pi2(u)= a(u, FalseT);
+val pi2= l(x 8, a(v(x 8), l(x 5, l(x 6, v(x 6)))));
 
-fun suc(x1, s, z)= l(x 1, l(x 2 ,a(s, a(a(x1,s), z))));
+val suc = l(x 11, l(x 9, l(x 10, a(a(v(x 11), v(x 9)),a(v(x 9), v(x 10))))));
 
-fun plus(x1, x2)= l(x 1,l(x 2, a(a(x1, v(x 1)), a(x2,a(v(x 1), v(x 2))))));
+val plus = l(x 3, l(x 4, a(a(v(x 3), suc),v(x 4))));
 
-fun mul(x1, x2)= l(x 1, a(x1, a(x2, v(x 1))));
+val mul = l(x 3, l(x 4, l(x 9, a(v(x 3),a(v(x 4),v(x 9))))));
 
-fun exp(x1, x2)= a(x2, x1);
+val exp= l(x 3, l(x 4, a(v(x 4), v(x 3))));
 
 val nul = l(x 1, l(x 2, v(x 2)));
 
-fun cons(h, t) = l(x 2, a(v(x 2), a(h, t)));
+val cons=l(x 12, l(x 13, l(x 10, a(a(v(x 10), v(x 12)), v(x 13)))));
 
-fun head(li)= a(li, l(x 1, l(x 2, v(x 1))));
+val head = l(x 14, a(v(x 14),l(x 12, l(x 13, v(x 12)))));
 
-fun tail(li)= a(li, l(x 1, l(x 2, v(x 2))));
+val tail = l(x 14, a(v(x 14),l(x 12, l(x 13, v(x 13)))));
