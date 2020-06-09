@@ -142,3 +142,7 @@ val cons=l(x 12, l(x 13, l(x 10, a(a(v(x 10), v(x 12)), v(x 13)))));
 val head = l(x 14, a(v(x 14),l(x 12, l(x 13, v(x 12)))));
 
 val tail = l(x 14, a(v(x 14),l(x 12, l(x 13, v(x 13)))));
+
+val Y = l(x 15, a(l(x 16, a(v(x 15),a(v(x 16),v(x 16)))),l(x 16, a(v(x 15),a(v(x 16),v(x 16))))));
+
+val pred = l(x 11, l(x 9, l(x 10, a(a(a(v(x 11), l(x 17, l(x 18, a(v(x 18), a(v(x 17), v(x 9)))))), l(x 19, v(x 10))),l(x 19, v(x 19))))));
