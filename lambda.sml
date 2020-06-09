@@ -92,6 +92,10 @@ fun ronaster(any)=
     in
         ronasterpa(any, [], 0)
     end;
+fun ronasters(any)=if redex(any)=true then
+                  ronasters(ron(any))
+                  else 
+                  any;
 
 fun roaidaster(any)=if redex(any)=true then
                   roaidaster(printVal(roaid(any)))
@@ -111,7 +115,7 @@ fun betaster(any)=if redex(any)=true then
 val TrueT = l(x 1,l(x 2, v(x 1)));
 val FalseT = l(x 1,l(x 2, v(x 2)));
 
-val zeroT = l(x 9, l(x 10, v(x 10)));
+val zeroT = l(x 8, l(x 7, v(x 7)));
 
 val ite = l(x 3, l(x 1, l(x 2, a(a(v(x 3), v(x 1)),v(x 2)))));
 
@@ -121,28 +125,40 @@ val andT= l(x 3, l(x 4, a(a(v(x 3),v(x 4)),FalseT)))
 
 val orT = l(x 3, l(x 4, a(a(v(x 3), TrueT), v(x 4))))
 
-val pi = l(x 5, l(x 6, l(x 7, a(a(v(x 7),v(x 5)),v(x 6)))));
+val pi = l(x 3, l(x 4, l(x 5, a(a(v(x 5),v(x 3)),v(x 4)))));
 
-val pi1= l(x 8, a(v(x 8), l(x 5, l(x 6, v(x 5)))));
+val pi1= l(x 6, a(v(x 6), l(x 3, l(x 4, v(x 3)))));
 
-val pi2= l(x 8, a(v(x 8), l(x 5, l(x 6, v(x 6)))));
+val pi2= l(x 6, a(v(x 6), l(x 3, l(x 4, v(x 4)))));
 
-val suc = l(x 11, l(x 9, l(x 10, a(a(v(x 11), v(x 9)),a(v(x 9), v(x 10))))));
+val suc = l(x 3, l(x 8, l(x 7, a(a(v(x 3), v(x 8)),a(v(x 8), v(x 7))))));
 
 val plus = l(x 3, l(x 4, a(a(v(x 3), suc),v(x 4))));
 
-val mul = l(x 3, l(x 4, l(x 9, a(v(x 3),a(v(x 4),v(x 9))))));
+val mul = l(x 3, l(x 4, a(a(v(x 3),a(plus, v(x 4)) ),zeroT)));
 
 val exp= l(x 3, l(x 4, a(v(x 4), v(x 3))));
 
 val nul = l(x 1, l(x 2, v(x 2)));
 
-val cons=l(x 12, l(x 13, l(x 10, a(a(v(x 10), v(x 12)), v(x 13)))));
+val cons=l(x 3, l(x 4, l(x 7, a(a(v(x 7), v(x 3)), v(x 4)))));
 
-val head = l(x 14, a(v(x 14),l(x 12, l(x 13, v(x 12)))));
+val head = l(x 3, a(v(x 3),l(x 3, l(x 4, v(x 3)))));
 
-val tail = l(x 14, a(v(x 14),l(x 12, l(x 13, v(x 13)))));
+val tail = l(x 3, a(v(x 3),l(x 3, l(x 4, v(x 4)))));
 
-val Y = l(x 15, a(l(x 16, a(v(x 15),a(v(x 16),v(x 16)))),l(x 16, a(v(x 15),a(v(x 16),v(x 16))))));
+val Y = l(x 10, a(l(x 11, a(v(x 10),a(v(x 11),v(x 11)))),l(x 11, a(v(x 10),a(v(x 11),v(x 11))))));
 
-val pred = l(x 11, l(x 9, l(x 10, a(a(a(v(x 11), l(x 17, l(x 18, a(v(x 18), a(v(x 17), v(x 9)))))), l(x 19, v(x 10))),l(x 19, v(x 19))))));
+val pred = l(x 3, l(x 8, l(x 7, a(a(a(v(x 3), l(x 4, l(x 5, a(v(x 5), a(v(x 4), v(x 8)))))), l(x 6, v(x 7))),l(x 6, v(x 6))))));
+
+val isz = l(x 3, a(a(v(x 3), l(x 3, FalseT)),TrueT));
+
+val suma = a(Y, l(x 9, l(x 3, l(x 4, a(a(a(ite,a(isz, v(x 3))),zeroT),a(a(plus, a(a(v(x 9),a(pred, v(x 3))),v(x 4))), a(suc, zeroT)))))));
+
+val prod = a(Y, l(x 9, l(x 3, l(x 4, a(a(a(ite,a(isz, v(x 3))),zeroT),a(a(plus, a(a(v(x 9),a(pred, v(x 3))),v(x 4))), v(x 3)))))));
+
+val fact = a(Y, l(x 9, l(x 3, a(a(a(ite,a(isz, v(x 3))),a(suc, zeroT)),a(a(mul, a(v(x 9), a(pred,v(x 3)))),v(x 3))))));
+
+val suma2 = a(Y, l(x 9, l(x 3, l(x 4, a(a(a(ite,a(isz, v(x 3))),v(x 4)),a(a(plus, a(a(v(x 9),a(pred, v(x 3))),v(x 4))), a(suc, zeroT)))))));
+
+val prod2 = a(Y, l(x 9, l(x 3, l(x 4, a(a(a(ite,a(isz, v(x 3))),zeroT),a(a(plus, a(a(v(x 9),a(pred, v(x 3))),v(x 4))), v(x 4)))))));
