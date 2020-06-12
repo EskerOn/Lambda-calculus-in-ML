@@ -1,5 +1,5 @@
 (*
-Tipos en el calculo lambda
+Recursion en el calculo lambda
 Escalante Hernandez Alejandro
 *)
 datatype vars = x of int
